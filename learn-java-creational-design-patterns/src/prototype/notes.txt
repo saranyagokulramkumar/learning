@@ -1,0 +1,6 @@
+- implements clone/ cloneable
+- avoids keyword "new"
+- although a copy, each instance is unique
+- costly construction not handled by client
+- can still utilize parameters for construction
+- shallow vs deep copy

@@ -1,0 +1,6 @@
+- Singleton classes have a private instance of itself and a private constructor
+- if not careful, singletons are not thread-safe
+- difficult to unit test
+- sometimes confused for factory - constructor should not need arguments, if it does it is not a singleton
+- singleton returns the same instance every time, one constructor - no args, no interface
+- whereas factory returns various instances, multiple constructors, interface driven

@@ -1,0 +1,9 @@
+- handles complex constructors
+- large number of parameters
+- immutability
+- handles the construction of objects and eliminates need for multiple overloaded constructors with different
+ parameters as and when the required parameters increase in number (telescoping constructors)
+- also eliminates the need for getters and setters to individually set each property of a class
+- typically written with static inner class
+- enforce contracts within builder inner class for required arguments
+- immutable fields because no access to public setters, once the object is created using a builder it is final

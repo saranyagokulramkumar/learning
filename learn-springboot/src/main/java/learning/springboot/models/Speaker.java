@@ -1,5 +1,7 @@
 package learning.springboot.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
@@ -8,6 +10,7 @@ import java.util.List;
 
 @Data
 @Entity (name = "speakers")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Speaker {
 
     @Id
@@ -24,6 +27,7 @@ public class Speaker {
     private byte[] speaker_photo;
 
     @ManyToMany (mappedBy = "speakers")
+    @JsonIgnore
     private List<Session> sessions;
 
     public Speaker() {
