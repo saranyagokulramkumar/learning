@@ -11,42 +11,16 @@ public class Main {
         new Thread(() -> {
         }).start();
 
-        Employee john = new Employee("John Doe",30);
-        Employee saranya = new Employee("Saranya G",30);
-        Employee aishu = new Employee("Aishu G",5);
-
-        List<Employee> employeeList = new ArrayList<>();
-        employeeList.add(john);
-        employeeList.add(saranya);
-        employeeList.add(aishu);
-
-        Collections.sort(employeeList, (employee1, employee2) ->
-                employee1.getName().compareTo(employee2.getName()));
-
-        for(Employee employee: employeeList){
-
-            System.out.printf(employee.getName()+"\n");
-        }
-
-        String s = doStringStuff(new UpperConcat() {
-            @Override
-            public String upperAndConcat(String s1, String s2) {
-                return s1.toUpperCase() + s2.toUpperCase();
-            }
-        }
-        ,employeeList.get(0).getName(),
-                employeeList.get(1).getName());
-        System.out.println(s);
-
-        UpperConcat uc = (s1, s2) -> s1.toUpperCase() + s2.toUpperCase();
-        String s2 = doStringStuff(uc,employeeList.get(1).getName(),employeeList.get(2).getName());
-        System.out.println(s2);
+        AnotherClass anotherClass = new AnotherClass();
+        String result = anotherClass.doSomething();
+        System.out.println(result);
     }
 
     public final static String doStringStuff(UpperConcat uc, String s1, String s2){
 
         return uc.upperAndConcat(s1,s2);
     }
+
 }
 
 class Employee{
@@ -74,9 +48,30 @@ class Employee{
     public void setAge(int age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
 
 interface UpperConcat{
 
     public String  upperAndConcat(String s1, String s2);
+}
+
+class AnotherClass{
+    public String doSomething(){
+        UpperConcat uc = (s1,s2) ->{
+            System.out.println("the lambda expression's class is "+getClass().getSimpleName());
+            String result = s1.toUpperCase() + s2.toUpperCase();
+            return result;
+        };
+
+        System.out.println("the anotherclass's class is "+getClass().getSimpleName());
+        return Main.doStringStuff(uc,"String1","String2");
+    }
 }
